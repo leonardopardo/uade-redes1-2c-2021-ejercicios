@@ -269,3 +269,6 @@ Para esta configuración quedarían:
 Hasta aquí llega mi análisis :|
 ___
 
+## Ejercicio 2
+
+![img]()
