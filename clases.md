@@ -242,8 +242,7 @@ La impresión sería que no es válido este esquema de 3 subredes de las cuales 
 
 
 **¿Existe una solución para este problema?**  
-Dadas las herramientas vistas podría parecer una solución viable cambiar la
-máscara de red.
+Dadas las herramientas vistas podría parecer una solución viable agregar un bit más de host y ver como queda nuevamente la máscara,
 
 **¿Qué pasaría si agrego un bit más de host?**
 
@@ -255,18 +254,22 @@ Podré armar 2 redes de 128 - 2 host para lo cual podré cumplir el requisito de
 
 >**máscara de red + máscara de subred**
 >- `11111111.11111111.11111111.10000000`
->- `|......red.......|..subred..|.host.|`
+>- `|..red..|......subred......|.host.|`
 >- `10.1.1.0/25`
 
 Para esta configuración quedarían:
-- 16 bits para máscara de red
-- 9 bits para máscara de subred (512 subredes)
-- 7 bits para host (128 ip's)
+- 8 bits para máscara de red ___máscara default para Ip Clase A___
+- 17 bits para máscara de subred ___muchas subredes___
+- 7 bits para host (128 ip's) ___suficientes host___
 
 ## El esquema cumple las condiciones, pero ... ¿Es el más eficiente?
 :/
 
-Hasta aquí llega mi análisis :|
+## Conclusiones
+1. Dado que la ip inicial es de clase A y la máscara era de 24 bits, ya se estaba haciendo subnetting con 16 bits para subredes y 8 para host, así que sin hacer nada se cumplía con las condiciones.
+2. Al hacer los cálculos para determinar los bits de host no se pudo armar una subred válida.
+3. En el resultado final al cambiar la máscara de subred la holgura sobre la cantidad de host parace más eficiente.
+
 ___
 
 ## Ejercicio 2
