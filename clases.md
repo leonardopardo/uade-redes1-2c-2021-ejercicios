@@ -271,4 +271,10 @@ ___
 
 ## Ejercicio 2
 
+**Supuestos**
+- Una capa no puede ver por encima de si misma, es decir capa 2 no sabe nada de capa 3
+- Capa 3 sólo conoce direcciones de su capa (ip's) y no conoce las direcciones de capa 2 (mac address)
+- El host del que parte la información conoce la ip del equipo de destino
+- Las ip de origen y de destino viajan en todas las capas
+
 ![ejercicio_2](./assets/ejercicio_2.png)
