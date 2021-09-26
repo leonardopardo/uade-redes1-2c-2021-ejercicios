@@ -271,4 +271,4 @@ ___
 
 ## Ejercicio 2
 
-![ejercicio_2](https://github.com/leonardopardo/uade-redes1-2c-2021-ejercicios/blob/master/assets/ejercicio_2.png)
+![ejercicio_2](./assets/ejercicio_2.png)
