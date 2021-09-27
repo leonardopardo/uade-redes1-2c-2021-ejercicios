@@ -206,52 +206,27 @@ Por lo tan traduzco 3 Dominios de Broadcast a 3 redes y debo considerar la red c
 - 64 host
 
 >$$ 64 = 2^N - 2 $$
->$$ 64-2 = 2^N $$
->$$ 62 = 2^N $$
->$$ ln{62} = ln{2^N} $$
->$$ ln{62} = N * ln{2} $$
->$$ \frac{ln62}{ln2} = N $$
->$$ 5.95 = N $$
+>$$ 64+2 = 2^N $$
+>$$ 66 = 2^N $$
+>$$ ln{66} = ln{2^N} $$
+>$$ ln{66} = N * ln{2} $$
+>$$ \frac{ln66}{ln2} = N $$
+>$$ 6.04 = N $$
 
-Por lo tanto necesito 6 bits de host y 2 de red, dado que con 2 bits de red voy a poder obtener 
-
-> $$ 2^N redes = 2^2 redes = 4 redes $$
-
-suficiente para las 3 redes solicitadas.
-
-Entonces quedarán 4 subredes de 
-
-> $$ \frac{256[ip]}{4[red]} = \frac{64 [ip]}{[red]} $$
+Por lo tanto necesito 7 bits de host.
 
 **Tabla de Rangos**
 
 | dir. de red    | primer ip de host | última ip de host | dir. de broadcast | cant host |
 |----------------|-------------------|-------------------|-------------------|-----------|
-| **10.1.1.0**   | 10.1.1.1          | 10.1.1.62         | **10.1.1.63**     | **62**    |
-| **10.1.1.64**  | 10.1.1.65         | 10.1.1.126        | **10.1.1.127**    | 62        |
-| **10.1.1.128** | 10.1.1.129        | 10.1.1.190        | **10.1.1.191**    | 62        |
-| **10.1.1.192** | 10.1.1.193        | 10.1.1.254        | **10.1.1.255**    | 62        |
-
+| **10.1.1.0**   | 10.1.1.1          | 10.1.1.126        | **10.1.1.127**    | 126       |
+| **10.1.1.128** | 10.1.1.129        | 10.1.1.254        | **10.1.1.255**    | 126       |
+| **10.1.2.0**   | 10.1.2.1          | 10.1.2.126        | **10.1.2.127**    | 126       |
 
 > ## ¿Qué pasó acá?
-> Si bien se hicieron los cálculos correctamente no se pudo obtener una red de 64 host válidos. :o
-
-
-**¿Es cierto qué este esquema no es válido?**  
-La impresión sería que no es válido este esquema de 3 subredes de las cuales una debe tener 64 ip's para host considerando el último octeto disponible para la segmentación solicitada.
-
-
-**¿Existe una solución para este problema?**  
-Dadas las herramientas vistas podría parecer una solución viable agregar un bit más de host y ver como queda nuevamente la máscara,
-
-**¿Qué pasaría si agrego un bit más de host?**
-
-**máscara de red + máscara de subred**
-- `11111111.11111111.11111111.10000000`
-- `10.1.1.0/25`
-
-Podré armar 2 redes de 128 - 2 host para lo cual podré cumplir el requisito de 64 ip's para host, pero no el de tres 3 redes por lo que debería cambiar la distribución de los bits de máscara de red y máscara de subred.
-
+> 1. Ahora la máscara en vez de ser /24 quedó /25, ¿es esto válido?  
+> 2. La siguiente ip de red es 10.1.2.0, ¿es correcto?  
+>
 >**máscara de red + máscara de subred**
 >- `11111111.11111111.11111111.10000000`
 >- `|..red..|......subred......|.host.|`
@@ -267,7 +242,7 @@ Para esta configuración quedarían:
 
 ## Conclusiones
 1. Dado que la ip inicial es de clase A y la máscara era de 24 bits, ya se estaba haciendo subnetting con 16 bits para subredes y 8 para host, así que sin hacer nada se cumplía con las condiciones.
-2. Al hacer los cálculos para determinar los bits de host no se pudo armar una subred válida.
+2. Al hacer los cálculos para determinar los bits de host se obtuvo que se podía realizar con 7 bits para host.
 3. En el resultado final al cambiar la máscara de subred la holgura sobre la cantidad de host parace más eficiente.
 
 ___
